@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Road-Sense: Crowdsourced pothole detection and mapping for smarter cities"/>
+  <meta name="theme-color" content="#1a73e8"/>
+  <title>Road-Sense | Live Pothole Dashboard</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛣️</text></svg>"/>
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- Leaflet MarkerCluster CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
+  
+  <!-- Leaflet Search CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.css" />
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css?v=3"/>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">🛣️</span>
+        <h1>Road-Sense</h1>
+      </div>
+      <div class="header-right">
+        <p class="tagline">Real-time crowdsourced pothole mapping</p>
+        <a href="admin.html" class="admin-link">🛡️ Admin</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-number" id="totalCount">--</span>
+      <span class="stat-label">Total Potholes</span>
+    </div>
+    <div class="stat-item high">
+      <span class="stat-number" id="highCount">--</span>
+      <span class="stat-label">High Severity</span>
+    </div>
+    <div class="stat-item medium">
+      <span class="stat-number" id="mediumCount">--</span>
+      <span class="stat-label">Medium Severity</span>
+    </div>
+    <div class="stat-item low">
+      <span class="stat-number" id="lowCount">--</span>
+      <span class="stat-label">Low Severity</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" id="lastUpdate">--</span>
+      <span class="stat-label">Last Report</span>
+    </div>
+  </div>
+
+  <!-- Controls Bar with Search -->
+  <div class="controls">
+    <!-- Search Box -->
+    <div class="search-group">
+      <input type="text" id="searchInput" placeholder="🔍 Search location (e.g., Mumbai, Delhi)..." />
+      <button id="searchBtn" class="btn-search">Search</button>
+    </div>
+    
+    <div class="filter-group">
+      <label for="severityFilter">Severity:</label>
+      <select id="severityFilter">
+        <option value="all">All</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="timeFilter">Time:</label>
+      <select id="timeFilter">
+        <option value="all">All Time</option>
+        <option value="today">Today</option>
+        <option value="week">7 Days</option>
+        <option value="month">30 Days</option>
+      </select>
+    </div>
+    <button id="refreshBtn" class="btn-refresh">🔄</button>
+    <button id="chartsBtn" class="btn-charts">📊 Analytics</button>
+  </div>
+
+  <!-- Analytics Modal -->
+  <div id="analyticsModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📊 Analytics Dashboard</h2>
+        <button class="modal-close" onclick="closeAnalytics()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="charts-grid">
+          <div class="chart-container">
+            <h3>Severity Distribution</h3>
+            <canvas id="severityChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <h3>Reports Over Time (Last 7 Days)</h3>
+            <canvas id="timeChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loading" class="loading-overlay">
+    <div class="loading-spinner"></div>
+    <p>Loading pothole data...</p>
+  </div>
+
+  <!-- Error Message -->
+  <div id="errorMessage" class="error-message" style="display: none;">
+    <p>⚠️ <span id="errorText">Error loading data</span></p>
+    <button onclick="location.reload()">Retry</button>
+  </div>
+
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>🚗 Road-Sense — Empowering citizens for better roads | Data updates in real-time</p>
+    <p class="footer-small">Built for Smart City Initiative 2026 | <a href="admin.html" style="color:#fff;">Admin Panel</a></p>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- Leaflet MarkerCluster JS -->
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  
+  <!-- Leaflet Geocoder (Search) -->
+  <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
+  
+  <!-- Main App Script -->
+  <script type="module" src="script.js?v=3"></script>
+</body>
+</html>
