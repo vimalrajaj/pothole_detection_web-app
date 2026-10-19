@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">रोडसेंस</string>
+    <string name="widget_description">त्वरित आंकड़े और पता लगाने को शुरू करें</string>
+    
+    <!-- Hindi translations -->
+    <string name="home">होम</string>
+    <string name="profile">प्रोफ़ाइल</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="leaderboard">लीडरबोर्ड</string>
+    <string name="trip_history">यात्रा इतिहास</string>
+    <string name="start_detection">पता लगाना शुरू करें</string>
+    <string name="stop_detection">पता लगाना बंद करें</string>
+    <string name="pothole_detected">गड्ढा मिला!</string>
+    <string name="potholes_found">गड्ढे मिले</string>
+    <string name="current_speed">वर्तमान गति</string>
+    <string name="share">साझा करें</string>
+    <string name="report">नगर पालिका को रिपोर्ट करें</string>
+    <string name="theme">थीम</string>
+    <string name="language">भाषा</string>
+    <string name="dark_mode">डार्क मोड</string>
+    <string name="light_mode">लाइट मोड</string>
+    <string name="system_default">सिस्टम डिफ़ॉल्ट</string>
+</resources>

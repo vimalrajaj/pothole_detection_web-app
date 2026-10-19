@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">రోడ్‌సెన్స్</string>
+    <string name="widget_description">త్వరిత గణాంకాలు మరియు గుర్తింపు ప్రారంభించండి</string>
+    
+    <!-- Telugu translations -->
+    <string name="home">హోమ్</string>
+    <string name="profile">ప్రొఫైల్</string>
+    <string name="settings">సెట్టింగ్స్</string>
+    <string name="leaderboard">లీడర్‌బోర్డ్</string>
+    <string name="trip_history">ప్రయాణ చరిత్ర</string>
+    <string name="start_detection">గుర్తింపు ప్రారంభించండి</string>
+    <string name="stop_detection">గుర్తింపు ఆపండి</string>
+    <string name="pothole_detected">గుంత కనుగొనబడింది!</string>
+    <string name="potholes_found">గుంతలు కనుగొనబడ్డాయి</string>
+    <string name="current_speed">ప్రస్తుత వేగం</string>
+    <string name="share">షేర్ చేయండి</string>
+    <string name="report">మునిసిపాలిటీకి నివేదించండి</string>
+    <string name="theme">థీమ్</string>
+    <string name="language">భాష</string>
+    <string name="dark_mode">డార్క్ మోడ్</string>
+    <string name="light_mode">లైట్ మోడ్</string>
+    <string name="system_default">సిస్టమ్ డిఫాల్ట్</string>
+</resources>

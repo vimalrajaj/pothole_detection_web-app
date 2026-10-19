@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974723114346",
+    "project_id": "roadsense-fb6cb",
+    "storage_bucket": "roadsense-fb6cb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974723114346:android:618cefe97b6a0465903113",
+        "android_client_info": {
+          "package_name": "com.vimal.roadsense"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxA8kyGdotEgrcy6g_PwRA4MDV2k17TBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

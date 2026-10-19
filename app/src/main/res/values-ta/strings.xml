@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ரோட்செண்ஸ்</string>
+    <string name="widget_description">விரைவான புள்ளிவிவரங்கள் மற்றும் கண்டறிதலைத் தொடங்கு</string>
+    
+    <!-- Tamil translations -->
+    <string name="home">முகப்பு</string>
+    <string name="profile">சுயவிவரம்</string>
+    <string name="settings">அமைப்புகள்</string>
+    <string name="leaderboard">தரவரிசை</string>
+    <string name="trip_history">பயண வரலாறு</string>
+    <string name="start_detection">கண்டறிதலைத் தொடங்கு</string>
+    <string name="stop_detection">கண்டறிதலை நிறுத்து</string>
+    <string name="pothole_detected">குழி கண்டறியப்பட்டது!</string>
+    <string name="potholes_found">குழிகள் கண்டறியப்பட்டன</string>
+    <string name="current_speed">தற்போதைய வேகம்</string>
+    <string name="share">பகிர்</string>
+    <string name="report">நகராட்சிக்கு புகார் செய்</string>
+    <string name="theme">தீம்</string>
+    <string name="language">மொழி</string>
+    <string name="dark_mode">இருண்ட முறை</string>
+    <string name="light_mode">ஒளி முறை</string>
+    <string name="system_default">கணினி இயல்புநிலை</string>
+</resources>
